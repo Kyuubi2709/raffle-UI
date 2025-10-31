@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,35 +9,50 @@
 <body>
   <div class="container">
     <h1>Results</h1>
-    <div class="card">
-      <p><strong>RNG Mode:</strong> {{ results.rng_mode }}</p>
-      <p><strong>Total participants:</strong> {{ results.participants }}</p>
-      <p><strong>Total tickets:</strong> {{ results.tickets }}</p>
-      <p><strong>Winners drawn:</strong> {{ results.winners|length }}</p>
-    </div>
 
-    <div class="card">
-      <h2>Winners</h2>
-      <ol>
-        {% for w in results.winners %}
-          <li>{{ w }}</li>
-        {% endfor %}
-      </ol>
-      <a href="{{ url_for('index') }}" class="btn">Run again</a>
-    </div>
+    <div class="layout">
+      <main>
+        <div class="card">
+          <p><strong>RNG Mode:</strong> {{ results.rng_mode }}</p>
+          <p><strong>Total participants:</strong> {{ results.participants }}</p>
+          <p><strong>Total tickets:</strong> {{ results.tickets }}</p>
+          <p><strong>Winners drawn:</strong> {{ results.winners|length }}</p>
+        </div>
 
-    <div class="card">
-      <h2>Top 10 by tickets</h2>
-      <table>
-        <thead>
-          <tr><th>FluxID</th><th>Tickets</th></tr>
-        </thead>
-        <tbody>
-          {% for fid, tix in results.top10 %}
-            <tr><td>{{ fid }}</td><td>{{ tix }}</td></tr>
-          {% endfor %}
-        </tbody>
-      </table>
+        <div class="card">
+          <h2>Winners</h2>
+          <ol>
+            {% for w in results.winners %}
+              <li>{{ w }}</li>
+            {% endfor %}
+          </ol>
+          <a href="{{ url_for('index') }}" class="btn">Run again</a>
+        </div>
+
+        <div class="card">
+          <h2>Top 10 by tickets</h2>
+          <table>
+            <thead>
+              <tr><th>FluxID</th><th>Tickets</th></tr>
+            </thead>
+            <tbody>
+              {% for fid, tix in results.top10 %}
+                <tr><td>{{ fid }}</td><td>{{ tix }}</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </main>
+
+      <aside class="banner card">
+        {% if banner_link %}
+          <a href="{{ banner_link }}" target="_blank" rel="noopener">
+            <img src="{{ banner_image_url }}" alt="Giveaway Banner">
+          </a>
+        {% else %}
+          <img src="{{ banner_image_url }}" alt="Giveaway Banner">
+        {% endif %}
+      </aside>
     </div>
   </div>
 </body>
