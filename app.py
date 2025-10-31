@@ -7,10 +7,15 @@ from raffle_core import read_participants, read_exclusions, run_raffle
 
 MAX_CONTENT_LENGTH = 10 * 1024 * 1024  # 10MB
 
+
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET', 'dev-secret')
     app.config['MAX_CONTENT_LENGTH'] = MAX_CONTENT_LENGTH
+
+    # Banner config (use env to override; defaults to local static file)
+    BANNER_IMAGE_URL = os.environ.get('BANNER_IMAGE_URL', '/static/banner.jpg')
+    BANNER_LINK = os.environ.get('BANNER_LINK', '')  # optional click-through URL
 
     @app.route('/', methods=['GET', 'POST'])
     def index():
@@ -38,13 +43,23 @@ def create_app():
                         totals.pop(x, None)
 
                 results = run_raffle(totals, prizes, seed)
-                return render_template('results.html', results=results)
+                return render_template(
+                    'results.html',
+                    results=results,
+                    banner_image_url=BANNER_IMAGE_URL,
+                    banner_link=BANNER_LINK
+                )
             except Exception as e:
                 flash(f'Error: {e}', 'error')
                 return redirect(url_for('index'))
 
-        return render_template('index.html')
+        return render_template(
+            'index.html',
+            banner_image_url=BANNER_IMAGE_URL,
+            banner_link=BANNER_LINK
+        )
 
     return app
+
 
 app = create_app()
