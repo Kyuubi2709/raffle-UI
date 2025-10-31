@@ -1,40 +1,79 @@
-# raffle-UI
-A Raffle UI to draw the winners of the FluxCloud &amp; K.A.T Halloween giveaway
+# ⚡ FluxID Raffle UI
 
+A lightweight, transparent raffle tool used for Flux community giveaways.  
+Built with Flask + Docker, it runs fair draws where the number of tickets is based on **Kaspa Node deployments** verified through the Flux API.
 
-Yes! I put together a tiny Flask web UI you can run in Docker. It lets you upload your participants CSV (and optional exclude CSV), set the number of prizes, and optionally enter a seed for a reproducible draw. It enforces your rules (tickets = total months; one prize max per FluxID; remove tickets of winners before next draws).
+---
 
-Download the ready-to-run project
+## 🎯 Giveaway Rules
 
-raffle_frontend_docker.zip
+1. Each FluxID earns tickets based on the **subscription term** of their Kaspa Node deployment:
 
-Inside you’ll find:
+   | Subscription Term | Lottery Tickets |
+   |-------------------|-----------------|
+   | 1 month           | 1 ticket        |
+   | 3 months          | 3 tickets       |
+   | 1 year            | 12 tickets      |
 
-app.py (Flask app)
+2. If a FluxID has multiple deployments, the ticket count adds up.  
+   _Example:_  
+   - 6-month node = 6 tickets  
+   - 1-month node = 1 ticket  
+   → **Total: 7 tickets**
 
-raffle_core.py (raffle logic)
+3. Only **one Nacho Kat NFT** can be won per FluxID.  
+   Once a FluxID wins, all its tickets are removed from the pool for the next draws.
 
-templates/ (simple UI)
+4. The raffle uses a **weighted random draw**, so entries with more months have higher chances, but every FluxID still has a shot.
 
-static/style.css
+---
 
-requirements.txt
+## 🧾 Verifying the Ticket Data
 
-Dockerfile
+https://api.runonflux.io/apps/globalappsspecifications
 
-README.md (quickstart)
+Search for apps with the deployment name **`KaspaNode`**.  
+Each record corresponds to a FluxID and its node configuration.  
+The data exported from this API forms the input spreadsheet for the raffle.
 
-Quickstart (Docker)
-unzip raffle_frontend_docker.zip
-cd raffle_frontend
-docker build -t raffle-ui .
-docker run --rm -p 8080:8080 raffle-ui
-# open http://localhost:8080
+---
 
-Notes
+## 📊 Participant Data
 
-Participants CSV must contain flux_id and either months or term (1m, 3m, 6 months, 1y, etc.). Multiple rows per flux_id are summed.
+The raffle reads a CSV file with two columns:
 
-Optional exclude CSV has a single flux_id column.
+flux_id,months
+1ABCxyz...,6
+1DEFuvw...,1
 
-Add a Seed to make the draw deterministic and verifiable; leave blank to use cryptographically strong randomness.
+**The official data export (`participants.csv`) is included in this repository.**
+
+---
+
+## 🧮 How the Raffle Works
+
+- The backend computes total tickets per `flux_id`.
+- Each ticket acts as a weighted entry in the pool.
+- Winners are drawn one by one.
+- After a FluxID wins, all its tickets are removed.
+- The results page lists winners and top ticket holders for transparency.
+
+The random number generator uses Python’s **cryptographically secure RNG**, or a deterministic seed for reproducible public draws.
+
+---
+
+## 🪙 Public Giveaway Reference
+
+Official Giveaway Tweet: https://x.com/Kaspa_KAT/status/1981768440797880356
+
+Announcement of Winner + Seed to verify: LINK HERE
+
+---
+
+## 🚀 Running Locally
+
+### Docker (recommended)
+```bash
+docker build -t fluxid-raffle .
+docker run --rm -p 8080:8080 fluxid-raffle
+# then open http://localhost:8080
