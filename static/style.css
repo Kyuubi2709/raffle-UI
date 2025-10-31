@@ -5,9 +5,16 @@ body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI,
 h1 { font-size: 28px; margin-bottom: 16px; }
 h2 { font-size: 20px; margin: 0 0 12px; }
 .card { background: var(--card); border-radius: 16px; padding: 16px; margin: 16px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+
 label { display:block; font-weight: 600; margin-top: 8px; }
-input[type="file"], input[type="number"], input[type="text"] { width: 100%; padding: 10px; margin: 6px 0 12px; border-radius: 10px; border: 1px solid #2a356b; background: #0f1631; color: var(--text); }
-button, .btn { display:inline-block; background: var(--accent); border:none; color: #001028; font-weight: 700; padding: 10px 16px; border-radius: 12px; cursor: pointer; text-decoration: none; }
+input[type="file"], input[type="number"], input[type="text"] {
+  width: 100%; padding: 10px; margin: 6px 0 12px;
+  border-radius: 10px; border: 1px solid #2a356b; background: #0f1631; color: var(--text);
+}
+button, .btn {
+  display:inline-block; background: var(--accent); border:none; color: #001028;
+  font-weight: 700; padding: 10px 16px; border-radius: 12px; cursor: pointer; text-decoration: none;
+}
 button:hover, .btn:hover { opacity: .9; }
 .row { display: flex; gap: 12px; }
 .col { flex: 1; }
@@ -18,3 +25,32 @@ table { width: 100%; border-collapse: collapse; }
 th, td { padding: 8px 10px; border-bottom: 1px solid #2a356b; }
 summary { cursor: pointer; }
 code, pre { background: #0f1631; padding: 8px; border-radius: 8px; display: block; white-space: pre-wrap; }
+
+/* Two-column layout with sidebar banner */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
+}
+
+.banner {
+  padding: 0; /* banner visual only */
+  overflow: hidden;
+}
+
+.banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+/* Mobile: stack columns */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .banner {
+    order: -1; /* show banner first on small screens (optional) */
+  }
+}
