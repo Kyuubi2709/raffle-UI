@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +9,7 @@
 <body>
   <div class="container">
     <h1>FluxID Raffle</h1>
+
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         <div class="messages">
@@ -20,50 +20,64 @@
       {% endif %}
     {% endwith %}
 
-    <form method="post" enctype="multipart/form-data" class="card">
-      <label>Participants CSV (required)</label>
-      <input type="file" name="participants" accept=".csv" required>
+    <div class="layout">
+      <main>
+        <form method="post" enctype="multipart/form-data" class="card">
+          <label>Participants CSV (required)</label>
+          <input type="file" name="participants" accept=".csv" required>
 
-      <label>Exclude CSV (optional)</label>
-      <input type="file" name="exclude" accept=".csv">
+          <label>Exclude CSV (optional)</label>
+          <input type="file" name="exclude" accept=".csv">
 
-      <div class="row">
-        <div class="col">
-          <label>Number of prizes</label>
-          <input type="number" name="prizes" min="1" placeholder="e.g., 10" required>
-        </div>
-        <div class="col">
-          <label>Seed (optional, for reproducible draw)</label>
-          <input type="text" name="seed" placeholder="e.g., Flux Halloween 2025">
-        </div>
-      </div>
+          <div class="row">
+            <div class="col">
+              <label>Number of prizes</label>
+              <input type="number" name="prizes" min="1" placeholder="e.g., 10" required>
+            </div>
+            <div class="col">
+              <label>Seed (optional, for reproducible draw)</label>
+              <input type="text" name="seed" placeholder="e.g., Flux Halloween 2025">
+            </div>
+          </div>
 
-      <p class="hint">
-        CSV must have <code>flux_id</code> and either <code>months</code> or <code>term</code> (e.g., 6m, 1y, "6 months"). Multiple rows per FluxID are summed.
-      </p>
+          <p class="hint">
+            CSV must have <code>flux_id</code> and either <code>months</code> or <code>term</code> (e.g., 6m, 1y, "6 months"). Multiple rows per FluxID are summed.
+          </p>
 
-      <button type="submit">Run Raffle</button>
-    </form>
+          <button type="submit">Run Raffle</button>
+        </form>
 
-    <details class="card">
-      <summary>CSV Format Examples</summary>
-      <pre>flux_id,months
+        <details class="card">
+          <summary>CSV Format Examples</summary>
+          <pre>flux_id,months
 fluxA,6
 fluxA,1
 fluxB,3
 fluxC,12
 fluxD,1</pre>
 
-      <pre>flux_id,term
+          <pre>flux_id,term
 fluxA,6 months
 fluxB,1y
 fluxC,3m</pre>
 
-      <pre>(Exclude list)
+          <pre>(Exclude list)
 flux_id
 team1
 test_flux</pre>
-    </details>
+        </details>
+      </main>
+
+      <aside class="banner card">
+        {% if banner_link %}
+          <a href="{{ banner_link }}" target="_blank" rel="noopener">
+            <img src="{{ banner_image_url }}" alt="Giveaway Banner">
+          </a>
+        {% else %}
+          <img src="{{ banner_image_url }}" alt="Giveaway Banner">
+        {% endif %}
+      </aside>
+    </div>
   </div>
 </body>
 </html>
