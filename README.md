@@ -48,6 +48,12 @@ flux_id,months
 
 **The official data export (`participants.csv`) is included in this repository.**
 
+**The official data export (`exclude.csv`) is included in this repository.**
+
+- 1XcNTEsgVND4eb3bsVa2bjktnZZSruVct (Kyuubi94)
+- 19S8wu3szFRaBhFgGwfZ4GRE4LUGfvsfNF (Kyuubi94)
+- 196GJWyLxzAw3MirTT7Bqs2iGpUQio29GH (K.A.T)
+
 ---
 
 ## 🧮 How the Raffle Works
