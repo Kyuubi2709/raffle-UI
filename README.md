@@ -3,7 +3,7 @@
 A lightweight, transparent raffle tool used for Flux community giveaways.  
 Built with Flask + Docker, it runs fair draws where the number of tickets is based on **Kaspa Node deployments** verified through the Flux API.
 
-**Live URL**: [LINK HERE](raffleui.app.runonflux.io)
+**Live URL**: ([raffleui.app.runonflux.io](https://raffleui.app.runonflux.io/))
 
 ---
 
