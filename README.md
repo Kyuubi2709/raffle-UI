@@ -46,9 +46,13 @@ flux_id,months
 1ABCxyz...,6
 1DEFuvw...,1
 
-**The official data export (`participants.csv`) is included in this repository.**
+**The official data export (`participants_giveaway1.csv`) is included in this repository.**
 
-**The official data export (`exclude.csv`) is included in this repository.**
+**The official data export (`exclude_giveaway1.csv`) is included in this repository.**
+
+**The official data export (`participants_giveaway2.csv`) is included in this repository.**
+
+**The official data export (`exclude_giveaway2.csv`) is included in this repository.**
 
 - 1XcNTEsgVND4eb3bsVa2bjktnZZSruVct (Kyuubi94)
 - 19S8wu3szFRaBhFgGwfZ4GRE4LUGfvsfNF (Kyuubi94)
@@ -71,9 +75,13 @@ The random number generator uses Python’s **cryptographically secure RNG**, or
 
 ## 🪙 Public Giveaway Reference
 
-Official Giveaway Tweet: https://x.com/Kaspa_KAT/status/1981768440797880356
+Official Giveaway_1 Tweet: https://x.com/Kaspa_KAT/status/1981768440797880356
 
-Announcement of Winner + Seed to verify: LINK HERE
+Giveaway_1, Announcement of Winner + Seed to verify: [LINK HERE](https://x.com/Kaspa_KAT/status/1984629244186460161)
+
+Official Giveaway_2 Tweet: [https://x.com/Kaspa_KAT/status/1981768440797880356](https://x.com/Kaspa_KAT/status/1985387044831465929)
+
+Giveaway_2, Announcement of Winner + Seed to verify: [LINK HERE]
 
 ---
 
