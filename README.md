@@ -53,6 +53,7 @@ flux_id,months
 - 1XcNTEsgVND4eb3bsVa2bjktnZZSruVct (Kyuubi94)
 - 19S8wu3szFRaBhFgGwfZ4GRE4LUGfvsfNF (Kyuubi94)
 - 196GJWyLxzAw3MirTT7Bqs2iGpUQio29GH (K.A.T)
+- 0x79ef91a5b34c5d904172c938c2d3ebf3f7e6040f (Kyuubi94)
 
 ---
 
